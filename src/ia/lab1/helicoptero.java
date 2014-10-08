@@ -13,7 +13,6 @@ public class helicoptero {
 	}
     
     public void set_vol(ArrayList<Integer> grups) {
-    	
     	vuelos_realizados.add(new ArrayList<Integer>(grups));
     }
 
