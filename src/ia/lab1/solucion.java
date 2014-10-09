@@ -60,6 +60,23 @@ public class solucion {
 		}
     }
 	
+	public void solucioninicial2() {
+		int indexGrup = 0;
+		int indexHeli = 0;
+		ArrayList<Integer> grups_vol = new ArrayList<Integer>();
+		while (indexGrup < grups.size()) {
+			helicoptero h = helicopteros.get(indexHeli);
+			grups_vol.add(indexGrup);
+			h.set_vol(grups_vol);
+			grups_vol.clear();
+			indexGrup++;
+			indexHeli++;
+			if(indexHeli >= helicopteros.size()) {
+				indexHeli = 0;
+			}
+		}
+	} 
+	
 	
 	//Operacions
 	public solucion operacion_cambiar_grupo(int helicoptero_origen, int vuelo_origen, int grupo_vuelo, int helicoptero_destino, int vuelo_destino) {
