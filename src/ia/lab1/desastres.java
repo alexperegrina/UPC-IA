@@ -19,7 +19,7 @@ public class desastres {
 		Grupos groups = new Grupos(100, rand.nextInt());
 		Centros centers = new Centros(5, 1, rand.nextInt());
 		solucion s = new solucion(centers, groups);
-		s.solucioninicial1();
+		s.solucionInicial4();
 		s.print_solucion();
 		s.calcular_coste_total();
 	}

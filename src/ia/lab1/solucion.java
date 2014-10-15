@@ -1,6 +1,8 @@
 package ia.lab1;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 import IA.Desastres.Centro;
 import IA.Desastres.Centros;
@@ -11,6 +13,13 @@ public class solucion {
 	ArrayList<helicoptero> helicopteros;
 	Grupos grups;
 	Centros centres;
+	
+	Comparator<Object> comparar_Npersonas = new Comparator<Object>() {
+		@Override
+		public int compare(Object g1, Object g2) {
+			return new Integer(grups.get((Integer)g1).getNPersonas()).compareTo(new Integer(grups.get((Integer)g2).getNPersonas()));
+		}
+	};
 	
 	public solucion(Centros centres, Grupos grups){
 		this.grups = grups;
@@ -31,8 +40,10 @@ public class solucion {
     	this.helicopteros = new ArrayList<helicoptero>(s.helicopteros);
     }
 
-	
-	//Creacion de una solucion inicial 1 un vol cada helicopter si tots helicopters un vol el primer fa un segon vol..
+	/**
+	 * Creacion de una solucion inicial 1 un vol cada helicopter si tots helicopters un vol 
+	 * el primer fa un segon vol..
+	 */
 	public void solucioninicial1() {
 		int indexGrup = 0;
 		int passetgers = 0;
@@ -49,6 +60,96 @@ public class solucion {
 				++indexGrup;
 				if (indexGrup < grups.size()) {
 					g = grups.get(indexGrup);
+					passetgers += g.getNPersonas();
+				}
+			}
+			h.set_vol(grups_vol);
+			grups_vol.clear();
+			passetgers = g.getNPersonas();
+			numGrups = 0;
+			if (i == helicopteros.size()-1 && indexGrup < grups.size()) i = -1; 
+		}
+    }
+	
+	/**
+	 * Solucion en la que se va asignando un solo grupo por vuelo
+	 */
+	public void solucionInicial2() {
+		int indexGrup = 0;
+		int indexHeli = 0;
+		ArrayList<Integer> grups_vol = new ArrayList<Integer>();
+		while (indexGrup < grups.size()) {
+			helicoptero h = helicopteros.get(indexHeli);
+			grups_vol.add(indexGrup);
+			h.set_vol(grups_vol);
+			grups_vol.clear();
+			indexGrup++;
+			indexHeli++;
+			if(indexHeli >= helicopteros.size()) {
+				indexHeli = 0;
+			}
+		}
+	} 
+	
+	/**
+	 * Solucion en la que se separa en dos conjuntos los grupos (prioritarios, no prioritarios)
+	 * se ordena cada conjunto de menor a mayor en funcion al numero de miembros en el grupos.
+	 */
+	@SuppressWarnings("unchecked")
+	public void solucionInicial3() {
+		ArrayList<Integer> prioridad = new ArrayList<Integer>();
+		ArrayList<Integer> no_prioridad = new ArrayList<Integer>();
+		for(int i = 0; i < grups.size(); i++) {
+			if(grups.get(i).getPrioridad() == 1) {
+				prioridad.add(i);
+			}
+			else {
+				no_prioridad.add(i);
+			}
+		}
+		
+		Collections.sort(prioridad,comparar_Npersonas);
+		Collections.sort(no_prioridad,comparar_Npersonas);
+		
+		//concatenamos los dos arraylist
+		prioridad.addAll(no_prioridad);
+		procesarSolucionInicial(prioridad);
+	}
+	
+	/**
+	 *  Solucion inicial en la qual se ordenan todos los grupos de menor a mayor 
+	 *  segun el numero de personas que forman el grupo.
+	 */
+	public void solucionInicial4() {
+		ArrayList<Integer> prioridad = new ArrayList<Integer>();
+		for(int i = 0; i < grups.size(); i++) {
+			prioridad.add(i);
+		}
+		Collections.sort(prioridad,comparar_Npersonas);
+		procesarSolucionInicial(prioridad);
+	}
+	
+	/**
+	 * Metodo que aplica la misma estrategia que SolucionInicial1 pero 
+	 * le pasamos por parametros un array con los grupos ordenados a nuestro antojo
+	 * @param grupos {@link ArrayList} que contiene los id de los grupos.
+	 */
+	private void procesarSolucionInicial(ArrayList<Integer> grupos) {
+		int indexGrup = 0;
+		int passetgers = 0;
+		int numGrups = 0;
+        ArrayList<Integer> grups_vol = new ArrayList<Integer>();
+        Grupo g = grups.get(grupos.get(0));
+		passetgers += g.getNPersonas();
+		
+		for (int i = 0; i < helicopteros.size(); ++i) {
+			helicoptero h = helicopteros.get(i);
+			while (passetgers < 15 && numGrups < 3 && indexGrup < grups.size()) {
+				grups_vol.add(grupos.get(indexGrup));
+				++numGrups;
+				++indexGrup;
+				if (indexGrup < grups.size()) {
+					g = grups.get(grupos.get(indexGrup));
 					passetgers += g.getNPersonas();
 				}
 			}
