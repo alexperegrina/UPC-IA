@@ -90,7 +90,6 @@ public class solucion {
 		int xAnt = 0,yAnt = 0, xOrg = 0, yOrg = 0;
 		for (int i = 0; i < helicopteros.size(); ++i) {
 
-			System.out.println("Helicoptero: " + i);
 			double costHel = 0;
 			double costHelUrg = 0;
 			Centro c = centres.get(helicopteros.get(i).getId_centro());
@@ -112,11 +111,11 @@ public class solucion {
 					costVol += calcular_time(dist);
 					if (g.getPrioridad() == 1) {
 						costPersonesUrg += g.getNPersonas()*2;
-						System.out.println("helicoptero = " + i + "vuelo = "+ j + "grupo = " + k + " PRIORIDAD");
+						//System.out.println("helicoptero = " + i + "vuelo = "+ j + "grupo = " + k + " PRIORIDAD");
 						volPrioritat = true;
 					} else {
 						costVol += g.getNPersonas();
-						System.out.println("helicoptero = " + i + "vuelo ="+ j + "grupo =" + k  + " NO PRIORIDAD");
+						//System.out.println("helicoptero = " + i + "vuelo ="+ j + "grupo =" + k  + " NO PRIORIDAD");
 						
 					}
 					xAnt = g.getCoordX();
@@ -132,19 +131,11 @@ public class solucion {
 				costHel += costVol + costPersonesUrg;
 				if (volPrioritat) {
 					costHelUrg = costHel;
-					System.out.println("COST HELICOPTERO PRIORIDAD = "+ costHelUrg);
-				} else {
-					System.out.println("COST HELICOPTERO NO PRIORIDAD = "+ costHel);
-					
 				}
 			}
-			System.out.println(costHel);
-			if (costHel > cost) cost = costHel;
+			cost += costHel;
 			if (costHelUrg > costUrgent) costUrgent = costHelUrg;
 		}
-		System.out.println();
-		System.out.println("El coste de la solucion es: "+ cost);
-		System.out.println("El coste de recoger los graves es: "+ costUrgent);
 		pair p = new pair(cost, costUrgent);
 		return p;
     }

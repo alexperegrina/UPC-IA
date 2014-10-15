@@ -21,7 +21,9 @@ public class desastres {
 		solucion s = new solucion(centers, groups);
 		s.solucioninicial1();
 		s.print_solucion();
-		s.calcular_coste_total();
+		pair p = s.calcular_coste_total();
+		System.out.println(p.getFirst());
+		System.out.println(p.getSecond());
 	}
 
 }
