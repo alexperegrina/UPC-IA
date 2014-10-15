@@ -3,6 +3,7 @@ package ia.lab1;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 import IA.Desastres.Centro;
 import IA.Desastres.Centros;
@@ -37,14 +38,28 @@ public class solucion {
 	public solucion(solucion s) {
     	this.grups = s.grups;
     	this.centres = s.centres;
-    	this.helicopteros = new ArrayList<helicoptero>(s.helicopteros);
+
+        helicopteros = new ArrayList<helicoptero>();
+
+		List<helicoptero> helicopteros_orig = s.getHelicopteros();
+      //Each Helicopter
+  		for (int i = 0; i < helicopteros_orig.size(); ++i) {
+  			helicoptero h = helicopteros_orig.get(i);
+  			helicopteros.add(new helicoptero(h.getId_centro()));
+  			ArrayList<ArrayList<Integer>> vuelos = h.getVuelos_realizados();
+  			helicoptero h_new = helicopteros.get(i);
+  			for (int j = 0; j < vuelos.size(); ++j) {
+  				ArrayList<Integer> x = new ArrayList<Integer>(vuelos.get(j));
+  				h_new.set_vol(x);
+  			}
+  		}
     }
 
 	/**
 	 * Creacion de una solucion inicial 1 un vol cada helicopter si tots helicopters un vol 
 	 * el primer fa un segon vol..
 	 */
-	public void solucioninicial1() {
+	public void solucionInicial1() {
 		int indexGrup = 0;
 		int passetgers = 0;
 		int numGrups = 0;
@@ -63,7 +78,7 @@ public class solucion {
 					passetgers += g.getNPersonas();
 				}
 			}
-			h.set_vol(grups_vol);
+			if (grups_vol.size() != 0) h.set_vol(grups_vol);
 			grups_vol.clear();
 			passetgers = g.getNPersonas();
 			numGrups = 0;
@@ -72,31 +87,11 @@ public class solucion {
     }
 	
 	/**
-	 * Solucion en la que se va asignando un solo grupo por vuelo
-	 */
-	public void solucionInicial2() {
-		int indexGrup = 0;
-		int indexHeli = 0;
-		ArrayList<Integer> grups_vol = new ArrayList<Integer>();
-		while (indexGrup < grups.size()) {
-			helicoptero h = helicopteros.get(indexHeli);
-			grups_vol.add(indexGrup);
-			h.set_vol(grups_vol);
-			grups_vol.clear();
-			indexGrup++;
-			indexHeli++;
-			if(indexHeli >= helicopteros.size()) {
-				indexHeli = 0;
-			}
-		}
-	} 
-	
-	/**
 	 * Solucion en la que se separa en dos conjuntos los grupos (prioritarios, no prioritarios)
 	 * se ordena cada conjunto de menor a mayor en funcion al numero de miembros en el grupos.
 	 */
 	@SuppressWarnings("unchecked")
-	public void solucionInicial3() {
+	public void solucionInicial2() {
 		ArrayList<Integer> prioridad = new ArrayList<Integer>();
 		ArrayList<Integer> no_prioridad = new ArrayList<Integer>();
 		for(int i = 0; i < grups.size(); i++) {
@@ -120,7 +115,7 @@ public class solucion {
 	 *  Solucion inicial en la qual se ordenan todos los grupos de menor a mayor 
 	 *  segun el numero de personas que forman el grupo.
 	 */
-	public void solucionInicial4() {
+	public void solucionInicial3() {
 		ArrayList<Integer> prioridad = new ArrayList<Integer>();
 		for(int i = 0; i < grups.size(); i++) {
 			prioridad.add(i);
@@ -153,7 +148,7 @@ public class solucion {
 					passetgers += g.getNPersonas();
 				}
 			}
-			h.set_vol(grups_vol);
+			if (grups_vol.size() != 0) h.set_vol(grups_vol);
 			grups_vol.clear();
 			passetgers = g.getNPersonas();
 			numGrups = 0;
@@ -163,17 +158,21 @@ public class solucion {
 	
 	
 	//Operacions
-	public solucion operacion_cambiar_grupo(int helicoptero_origen, int vuelo_origen, int grupo_vuelo, int helicoptero_destino, int vuelo_destino) {
-    	solucion s1 = new solucion(this);
-    	//Do a lot of stuf to change this group
-    	return s1;
-    }
-
-    public solucion operacion_intercambiar(int helicoptero1, int vuelo1, int grupo1, int helicoptero2, int vuelo2, int grupo2) {
-    	solucion s1 = new solucion(this);
-    	//Do a lot of stuff to swap this groups
-      	return s1;
-    }
+	public void operacion_cambiar_grupo(ArrayList<Integer> grups, int k, ArrayList<Integer> grups2) {
+		Integer grup = grups.get(k);
+		grups.remove(k);
+		grups2.add(grup);
+	}
+	
+	public void operacion_intercambiar(ArrayList<Integer> grups, int k, ArrayList<Integer> grups2, int k2) {
+		Integer grup1 = grups.get(k);
+		Integer grup2 = grups2.get(k2);
+		grups.remove(k);
+		grups2.remove(k2);
+		grups.add(grup2);
+		grups2.add(grup1);
+		
+	}
 
 	//Pintem solucio
 	public void print_solucion() {
@@ -242,6 +241,22 @@ public class solucion {
     }
 	
 	
+	public ArrayList<helicoptero> getHelicopteros() {
+		return helicopteros;
+	}
+
+	public Grupos getGrups() {
+		return grups;
+	}
+
+	public Centros getCentres() {
+		return centres;
+	}
+
+	public Comparator<Object> getComparar_Npersonas() {
+		return comparar_Npersonas;
+	}
+
 	//distance between to points;
 	private double calcular_distancia(int x1, int y1, int x2, int y2) {
     	double rx = (x1 - x2)*(x1 - x2);
@@ -258,6 +273,10 @@ public class solucion {
 		double time = (double)distance*1000 / speed_in_meters_per_minute ;
 		return time;
 	}
+
+	
+
+	
 	
 	
 }
