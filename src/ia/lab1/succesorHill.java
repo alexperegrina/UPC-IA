@@ -55,17 +55,19 @@ public class succesorHill implements SuccessorFunction {
 				ArrayList<Integer> grups = vuelos.get(j);
 				for (int k = 0; k < grups.size(); ++k) {
 					//Each Others helicopteros
-					for (int i2 = 0; i2 < helicopteros.size(); ++i2) {
+					for (int i2 = i; i2 < helicopteros.size(); ++i2) {
 						ArrayList<ArrayList<Integer>> vuelos2 = helicopteros.get(i2).getVuelos_realizados();
 						for (int j2 = 0; j2 < vuelos2.size(); ++j2) {
 							if (j2 != j || i2 != i) {
 								ArrayList<Integer> grups2 = vuelos2.get(j2);
 								for (int k2 = 0; k2 < grups2.size(); ++k2) {
-									solucion sol2 = new solucion(sol);
-									ArrayList<Integer> grupsSol2 = sol2.getHelicopteros().get(i).getVuelos_realizados().get(j);
-									ArrayList<Integer> grupsSol2b = sol2.getHelicopteros().get(i2).getVuelos_realizados().get(j2);
-									sol2.operacion_intercambiar(grupsSol2, k, grupsSol2b, k2);
-									successors.add(new Successor(sol2.toString(), sol2));
+									if (sumaPassetgersIntercambi(grups, grups2, grups2.get(k2), grups.get(k), g)) {
+										solucion sol2 = new solucion(sol);
+										ArrayList<Integer> grupsSol2 = sol2.getHelicopteros().get(i).getVuelos_realizados().get(j);
+										ArrayList<Integer> grupsSol2b = sol2.getHelicopteros().get(i2).getVuelos_realizados().get(j2);
+										sol2.operacion_intercambiar(grupsSol2, k, grupsSol2b, k2);
+										successors.add(new Successor(sol2.toString(), sol2));
+									}
 								}
 							}
 						}
@@ -76,6 +78,27 @@ public class succesorHill implements SuccessorFunction {
 		
 		
 		return successors;
+	}
+
+	private boolean sumaPassetgersIntercambi(ArrayList<Integer> grups, ArrayList<Integer> grups2, Integer idgrup2, Integer idgrup1, Grupos g) {
+		int pass = 0;
+		for (int i = 0; i < grups2.size();++i) {
+			if (grups2.get(i) != idgrup2) {
+				pass += g.get(grups2.get(i)).getNPersonas();
+			}
+		}
+		pass += g.get(idgrup1).getNPersonas();
+		if (pass > 15) return false;
+		
+		pass = 0;
+		for (int i = 0; i < grups.size();++i) {
+			if (grups.get(i) != idgrup1) {
+				pass += g.get(grups.get(i)).getNPersonas();
+			}
+		}
+		pass += g.get(idgrup2).getNPersonas();
+		if (pass > 15) return false;
+		return true;
 	}
 
 	private int sumaPassetgers(ArrayList<Integer> grups2, Integer grup, Grupos g) {

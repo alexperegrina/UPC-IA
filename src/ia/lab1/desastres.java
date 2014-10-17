@@ -6,6 +6,8 @@ import aima.search.framework.Problem;
 import aima.search.framework.Search;
 import aima.search.framework.SearchAgent;
 import aima.search.informed.HillClimbingSearch;
+import aima.search.informed.SimulatedAnnealingSearch;
+
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
@@ -24,8 +26,8 @@ public class desastres {
 		
 		// Creamos los grupos y los centros de resccate 100 grupos, 5 centros para primer ejercicio
 		// y las semillas de aletoriedad
-		Grupos groups = new Grupos(100, rand.nextInt());
-		Centros centers = new Centros(5, 1, rand.nextInt());
+		Grupos groups = new Grupos(100, 1234);
+		Centros centers = new Centros(5, 1, 1234);
 		solucion s = new solucion(centers, groups);
 		s.solucionInicial1();
 		System.out.println("initial solution");
@@ -33,13 +35,17 @@ public class desastres {
 		pair reslt = s.calcular_coste_total();
 	    System.out.println("Coste Total = "+ reslt.getFirst() + " Coste Prioridad = "+ reslt.getSecond());
 		
-		Problem p = new Problem(s, new succesorHill(), new solucionFinal(), new heuristica1());
-        Search s2 = new HillClimbingSearch();
+		/*Problem p = new Problem(s, new succesorHill(), new solucionFinal(), new heuristica1());
+        Search s2 = new HillClimbingSearch();*/
+        
+        Problem p = new Problem(s, new succesorAnnealing(), new solucionFinal(), new heuristica1());
+        Search s2 = new SimulatedAnnealingSearch(10000,100,5,0.001);
+
         try {
         	
 			SearchAgent agent = new SearchAgent(p,s2);
 			//printActions(agent.getActions());
-		    //printInstrumentation(agent.getInstrumentation());
+		    printInstrumentation(agent.getInstrumentation());
 		    solucion fin = (solucion) s2.getGoalState();
 		    fin.print_solucion();
 
