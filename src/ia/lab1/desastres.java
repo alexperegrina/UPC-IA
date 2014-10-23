@@ -35,11 +35,11 @@ public class desastres {
 		pair reslt = s.calcular_coste_total();
 	    System.out.println("Coste Total = "+ reslt.getFirst() + " Coste Prioridad = "+ reslt.getSecond());
 		
-		/*Problem p = new Problem(s, new succesorHill(), new solucionFinal(), new heuristica1());
-        Search s2 = new HillClimbingSearch();*/
+		Problem p = new Problem(s, new succesorHill(), new solucionFinal(), new heuristica1());
+        Search s2 = new HillClimbingSearch();
         
-        Problem p = new Problem(s, new succesorAnnealing(), new solucionFinal(), new heuristica1());
-        Search s2 = new SimulatedAnnealingSearch(10000,100,5,0.001);
+        /*Problem p = new Problem(s, new succesorAnnealing(), new solucionFinal(), new heuristica1());
+        Search s2 = new SimulatedAnnealingSearch(5000,100,5,0.001);*/
 
         try {
         	

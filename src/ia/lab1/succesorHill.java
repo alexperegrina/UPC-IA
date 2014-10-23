@@ -76,6 +76,17 @@ public class succesorHill implements SuccessorFunction {
 			}
 		}
 		
+		//intercanviar helicopters
+		/*for(int i = 0; i < helicopteros.size(); ++i) {
+			for(int j = 0; j < helicopteros.size(); ++j) {
+				if(i != j) {
+					solucion sol2 = new solucion(sol);
+					sol2.operacion_intercambiar_helicopteros(i, j);
+					successors.add(new Successor(sol2.toString(), sol2));
+				}
+			}
+		}*/
+		
 		
 		return successors;
 	}

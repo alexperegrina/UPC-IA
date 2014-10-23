@@ -173,6 +173,15 @@ public class solucion {
 		grups2.add(grup1);
 		
 	}
+	
+	public void operacion_intercambiar_helicopteros(int h1, int h2) {
+		ArrayList<ArrayList<Integer>> tmp = new ArrayList<ArrayList<Integer>>(helicopteros.get(h1).getVuelos_realizados());
+		ArrayList<ArrayList<Integer>> tmp2 = new ArrayList<ArrayList<Integer>>(helicopteros.get(h2).getVuelos_realizados());
+		helicopteros.get(h1).getVuelos_realizados().clear();
+		helicopteros.get(h2).getVuelos_realizados().clear();
+		helicopteros.get(h1).setVuelos_realizados(tmp2);
+		helicopteros.get(h2).setVuelos_realizados(tmp);
+	}
 
 	//Pintem solucio
 	public void print_solucion() {

@@ -31,6 +31,10 @@ public class helicoptero {
 	public int getId_centro() {
 		return id_centro;
 	}
+	
+	public void setVuelos_realizados(ArrayList<ArrayList<Integer>> v) {
+		vuelos_realizados = v;
+	}
     
 	
     
