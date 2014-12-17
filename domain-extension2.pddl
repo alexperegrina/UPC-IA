@@ -14,7 +14,7 @@
          (localizado ?ciutat - ciudad ?htl - hotel) (hospedado ?ciutat - ciudad ?htl - hotel))
 
   (:functions
-    (interes ?ciutat - ciudad)
+    (interes ?ciutat)
     (min_total_dias_rec)
     (max_days_city)
     (min_days_city)
@@ -28,8 +28,8 @@
     :precondition (and (in ?ciutat1) (not-visited ?ciutat2) (transporte ?ciutat1 ?ciutat2) (localizado ?ciutat2 ?htl)   
                   (>= (dias_city) (min_days_city)))
     :effect (and (not (in ?ciutat1)) (in ?ciutat2) (visited ?ciutat2) (not (not-visited ?ciutat2)) (hospedado ?ciutat2 ?htl) 
-            (increase (total_ciudades) 1) (increase (min_total_dias_rec) 1) (decrease (dias_city) (- (dias_city) 1)) 
-            (increase (interes_total) (interes ?ciutat2))))
+            (increase (total_ciudades) 1) (increase (min_total_dias_rec) 1) 
+            (decrease (dias_city) (- (dias_city) 1))(increase (interes_total) (interes ?ciutat2))))
 
   (:action siguiente-ciudad-starting
     :parameters (?ciutat1 - ciudad ?ciutat2 - ciudad ?htl - hotel)
