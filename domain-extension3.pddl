@@ -16,7 +16,7 @@
   (:functions
     (interes ?ciutat - ciudad)
     (precio_hotel ?htl - hotel)
-    (precio_transporte (transporte ?ciutat1 - ciudad ?ciutat2 - ciudad))
+    (precio_transporte ?ciutat1 - ciudad ?ciutat2 - ciudad)
     (min_total_dias_rec)
     (max_days_city)
     (min_days_city)
@@ -33,7 +33,7 @@
     :effect (and (not (in ?ciutat1)) (in ?ciutat2) (visited ?ciutat2) (not (not-visited ?ciutat2)) (hospedado ?ciutat2 ?htl) 
             (increase (total_ciudades) 1) (increase (min_total_dias_rec) 1) 
             (decrease (dias_city) (- (dias_city) 1))
-            (increase (precio_total) (+ (precio_hotel ?htl) (precio_transporte (transporte ?ciutat1 ?ciutat2))))
+            (increase (precio_total) (+ (precio_hotel ?htl) (precio_transporte ?ciutat1 ?ciutat2)))
             ))
 
   (:action siguiente-ciudad-starting
@@ -42,7 +42,7 @@
                   (starting ?ciutat1))
     :effect (and (not (in ?ciutat1)) (in ?ciutat2) (visited ?ciutat2) (not (not-visited ?ciutat2)) (hospedado ?ciutat2 ?htl)
             (increase (total_ciudades) 1) (increase (min_total_dias_rec) 1) (increase (dias_city) 1) 
-            (increase (precio_total) (+ (precio_hotel ?htl) (precio_transporte (transporte ?ciutat1 ?ciutat2))))
+            (increase (precio_total) (+ (precio_hotel ?htl) (precio_transporte ?ciutat1 ?ciutat2)))
             ))
 
   (:action al-reves-ciudad-starting
@@ -51,7 +51,7 @@
                   (starting ?ciutat1))
     :effect (and (not (in ?ciutat1)) (in ?ciutat2) (visited ?ciutat2) (not (not-visited ?ciutat2)) (hospedado ?ciutat2 ?htl)
             (increase (total_ciudades) 1) (increase (min_total_dias_rec) 1) (increase (dias_city) 1) 
-            (increase (precio_total) (+ (precio_hotel ?htl) (precio_transporte (transporte ?ciutat1 ?ciutat2))))
+            (increase (precio_total) (+ (precio_hotel ?htl) (precio_transporte ?ciutat2 ?ciutat1)))
             ))
 
   (:action al_reves_siuiente-ciudad
@@ -60,7 +60,7 @@
                   (>= (dias_city) (min_days_city)))
     :effect (and (not (in ?ciutat1)) (in ?ciutat2) (visited ?ciutat2) (not (not-visited ?ciutat2)) (hospedado ?ciutat2 ?htl)
             (increase (total_ciudades) 1) (increase (min_total_dias_rec) 1) (decrease (dias_city) (- (dias_city) 1)) 
-            (increase (precio_total) (+ (precio_hotel ?htl) (precio_transporte (transporte ?ciutat1 ?ciutat2))))
+            (increase (precio_total) (+ (precio_hotel ?htl) (precio_transporte ?ciutat2 ?ciutat1)))
             ))
 
 
