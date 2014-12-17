@@ -69,6 +69,6 @@
          (= (interes c9) 3)
          (= (interes c10) 1))
   (:goal (and (>= (min_total_dias_rec) 12) (>= (precio_total) 300) (<= (precio_total) 900) (<= (dias_city) (max_days_city)) (>= (dias_city) (min_days_city)) (= (total_ciudades) 4)))
-  (:metric minimize (and (precio_total) (interes_total)))
+  (:metric minimize (+ (* (interes_total) 50)(precio_total)))
   
   )
