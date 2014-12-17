@@ -2,7 +2,6 @@
 
 (define (problem ten-cities)
   (:domain basic-viajes)
-  (:metric minimize (interes_total))
   (:objects c1 c2 c3 c4 c5 c6 c7 c8 c9 c10 - ciudad 
             h1_c1 h2_c1 h3_c2 h4_c3 h5_c4 h6_c4 h7_c5 h8_c6 h9_c7 h10_c7 h11_c8 h12_c9 h13_c9 h14_c9 h15_c10 - hotel)
   (:init (transporte c1 c2) (transporte c1 c3) (transporte c2 c4)
@@ -19,9 +18,9 @@
          (= (interes c2) 2)
          (= (interes c3) 3)
          (= (interes c4) 2)
-         (= (interes c5) 2)
+         (= (interes c5) 1)
          (= (interes c6) 1)
-         (= (interes c7) 2)
+         (= (interes c7) 1)
          (= (interes c8) 1)
          (= (interes c9) 3)
          (= (interes c10) 1)
@@ -36,5 +35,6 @@
          (= (total_ciudades) 0)
          (= (min_days_city) 2))
   (:goal (and (>= (min_total_dias_rec) 12) (<= (dias_city) (max_days_city)) (>= (dias_city) (min_days_city)) (= (total_ciudades) 4)))
+  (:metric minimize (interes_total))
   
   )

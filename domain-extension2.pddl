@@ -59,5 +59,5 @@
   (:action misma-ciudad
     :parameters (?ciutat1 - ciudad ?htl - hotel)
     :precondition (and (in ?ciutat1) (localizado ?ciutat1 ?htl) (not (starting ?ciutat1)) (< (dias_city) (max_days_city)))
-    :effect (and  (increase (min_total_dias_rec) 1) (increase (dias_city) 1)))
+    :effect (and  (increase (min_total_dias_rec) 1) (increase (dias_city) 1) (increase (interes_total) (interes ?ciutat1))))
  )
