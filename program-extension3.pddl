@@ -57,7 +57,7 @@
          (= (precio_transporte c8 c7) 80) 
          (= (precio_transporte c9 c8) 250) 
          (= (precio_transporte c10 c1) 250))
-  (:goal (and (>= (min_total_dias_rec) 12) (>= (precio_total) 300) (<= (precio_total) 600) (<= (dias_city) (max_days_city)) (>= (dias_city) (min_days_city)) (= (total_ciudades) 4)))
+  (:goal (and (>= (min_total_dias_rec) 12) (>= (precio_total) 300) (<= (precio_total) 900) (<= (dias_city) (max_days_city)) (>= (dias_city) (min_days_city)) (= (total_ciudades) 4)))
   (:metric minimize (precio_total))
   
   )
