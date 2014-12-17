@@ -19,5 +19,5 @@
          (localizado c6 h8_c6) (localizado c7 h9_c7) (localizado c7 h10_c7) (localizado c8 h11_c8)
          (localizado c9 h12_c9) (localizado c9 h13_c9) (localizado c9 h14_c9) (localizado c10 h15_c10)
          (= (total_ciudades) 0))
-  (:goal (= (total_ciudades) 4)
+  (:goal (= (total_ciudades) 4))
   )
