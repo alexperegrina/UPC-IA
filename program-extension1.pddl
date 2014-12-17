@@ -14,7 +14,7 @@
          (not-visited c4) (not-visited c5) (not-visited c6)
          (not-visited c7) (not-visited c8) (not-visited c9)
          (not-visited c10)
-         (in c1) (localizado c1 h1_c1) (localizado c1 h2_c1) (localizado c2 h3_c2)
+         (in c1) (starting c1) (localizado c1 h1_c1) (localizado c1 h2_c1) (localizado c2 h3_c2)
          (localizado c3 h4_c3) (localizado c4 h5_c4) (localizado c4 h6_c4) (localizado c5 h7_c5)
          (localizado c6 h8_c6) (localizado c7 h9_c7) (localizado c7 h10_c7) (localizado c8 h11_c8)
          (localizado c9 h12_c9) (localizado c9 h13_c9) (localizado c9 h14_c9) (localizado c10 h15_c10)
