@@ -20,7 +20,7 @@
          (localizado c9 h12_c9) (localizado c9 h13_c9) (localizado c9 h14_c9) (localizado c10 h15_c10)
          (= (dias_city) 0)
          (= (min_total_dias_rec) 0)
-         (= (max_days_city) 4)
+         (= (max_days_city) 3)
          (= (min_days_city) 2))
   (:goal (and (>= (min_total_dias_rec) 12) (<= (dias_city) (max_days_city)) (>= (dias_city) (min_days_city))))
   )
