@@ -5,7 +5,7 @@
 ;; El predicado "in" significa que se esta en una ciudad
 
 (define (domain basic-viajes)
-  (:requirements :adl :typing)
+  (:requirements :strips :typing :fluents)
   (:types lugar transporte - object  
           ciudad hotel - lugar)
   
