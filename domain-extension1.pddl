@@ -15,6 +15,8 @@
 
   (:functions
     (min_total_dias_rec)
+    (max_days_city)
+    (min_days_city)
     (dias_city)
   )
 
