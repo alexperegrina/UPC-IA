@@ -5,12 +5,12 @@
 ;; El predicado "in" significa que se esta en una ciudad
 
 (define (domain basic-viajes)
-  (:requirements :strips)
+  (:requirements :adl :typing)
   (:types lugar transporte - object  
           ciudad hotel - lugar)
   (:predicates (in ?ciutat - ciudad) (visited ?ciutat - ciudad) (not-visited ?ciutat - ciudad)
          (starting ?ciutat - ciudad) (transporte ?ciutat1 - ciudad ?ciutat2 - ciudad) 
-         (localizado ?ciutat -ciudad ?htl - hotel) (hospedado ?ciutat - ciudad ?htl - hotel))
+         (localizado ?ciutat - ciudad ?htl - hotel) (hospedado ?ciutat - ciudad ?htl - hotel))
 
   (:action siguiente-ciudad
     :parameters (?ciutat1 - ciudad ?ciutat2 - ciudad ?htl - hotel)
