@@ -23,7 +23,7 @@
          (= (max_days_city) 3)
          (= (interes_total) 0)
          (= (total_ciudades) 0)
-         (= (min_days_city) 2))
+         (= (min_days_city) 2)
          (= (interes c1) 1) 
          (= (interes c2) 2)
          (= (interes c3) 3)
@@ -33,7 +33,7 @@
          (= (interes c7) 1)
          (= (interes c8) 1)
          (= (interes c9) 3)
-         (= (interes c10) 1)
+         (= (interes c10) 1))
   (:goal (and (>= (min_total_dias_rec) 12) (<= (dias_city) (max_days_city)) (>= (dias_city) (min_days_city)) (= (total_ciudades) 4)))
   (:metric minimize (interes_total))
   
