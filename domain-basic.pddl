@@ -8,9 +8,14 @@
   (:requirements :adl :typing)
   (:types lugar transporte - object  
           ciudad hotel - lugar)
+  
   (:predicates (in ?ciutat - ciudad) (visited ?ciutat - ciudad) (not-visited ?ciutat - ciudad)
          (starting ?ciutat - ciudad) (transporte ?ciutat1 - ciudad ?ciutat2 - ciudad) 
          (localizado ?ciutat - ciudad ?htl - hotel) (hospedado ?ciutat - ciudad ?htl - hotel))
+
+  (:functions
+    (total_ciudades)
+  )
 
   (:action siguiente-ciudad
     :parameters (?ciutat1 - ciudad ?ciutat2 - ciudad ?htl - hotel)
