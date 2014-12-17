@@ -22,5 +22,5 @@
          (= (min_total_dias_rec) 0))
          (= (max_days_city) 4))
          (= (min_days_city) 2))
-  (:goal (and (= (min_total_dias_rec) 12) (< (dias_city) (max_days_city)) (>= (dias_city) (min_days_city)))
+  (:goal (and (= (min_total_dias_rec) 12) (<= (dias_city) (max_days_city)) (>= (dias_city) (min_days_city))))
   )
