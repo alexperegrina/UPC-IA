@@ -19,6 +19,7 @@
          (localizado c6 h8_c6) (localizado c7 h9_c7) (localizado c7 h10_c7) (localizado c8 h11_c8)
          (localizado c9 h12_c9) (localizado c9 h13_c9) (localizado c9 h14_c9) (localizado c10 h15_c10)
          (= (dias_city) 0)
+         (= (aux_data) 0)
          (= (min_total_dias_rec) 0)
          (= (max_days_city) 4)
          (= (min_days_city) 2))
