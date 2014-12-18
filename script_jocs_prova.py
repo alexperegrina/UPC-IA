@@ -49,7 +49,7 @@ def main(argv=None):
 			#declaring hotels
 			for j in range(num_hotels):
 				f.write('h'+ str(j+1) + '_' +'c'+str((j/2)+1) + ' ');
-			f.write("- hotel \n\t");
+			f.write("- hotel)\n\t");
 
 			#init
 			f.write("(:init ");
