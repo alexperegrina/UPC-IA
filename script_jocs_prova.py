@@ -85,6 +85,7 @@ def main(argv=None):
 				#dias_total = getnumber(-1,num_cities*2);
 				dias_min = getnumber(-1,num_cities/2,1);
 				dias_max = getnumber(-1,num_cities/2,dias_min+1);
+				f.write("(= (dias_city) 0)\n\t\t");
 				f.write("(= (min_total_dias_rec) 0)\n\t\t");
 				f.write("(= (min_days_city) "+ str(dias_min)+")\n\t\t");
 				f.write("(= (max_days_city) "+ str(dias_max)+")\n\t\t");
