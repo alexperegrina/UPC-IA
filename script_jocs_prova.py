@@ -97,6 +97,7 @@ def main(argv=None):
 					f.write("(= (interes c"+ str(j+1) +") "+ str(interes)+")");
 					if j%2 == 0:
 						f.write('\n\t\t');
+					f.write("(= (interes_total) 0)\n\t\t");
 
 			if (args.program >= 3):
 				#precios hoteles
@@ -105,6 +106,7 @@ def main(argv=None):
 					f.write("(= (precio_hotel h"+ str(j+1) + '_c' + str((j/2)+1) + ') '+ str(precio_hotel)+")");
 					if j%2 == 0:
 						f.write('\n\t\t');
+					f.write("(= (precio_total) 0)\n\t\t");
 			
 
 			#tanquem init
