@@ -74,8 +74,9 @@ def main(argv=None):
 				f.write('(transporte c'+str(n)+' c'+str(n2)+')');
 				if j%2 == 0:
 					f.write('\n\t\t');
-				precio_transporte = getnumber(-1,1000,20);
-				f.write("(= (precio_transporte c"+ str(n) + 'c' + str(n2) + ') '+ str(precio_transporte)+")");
+				if (args.program >= 3):
+					precio_transporte = getnumber(-1,1000,20);
+					f.write("(= (precio_transporte c"+ str(n) + 'c' + str(n2) + ') '+ str(precio_transporte)+")");
 
 			#total_ciudades a visitar inicializacion
 			f.write("\n\t\t(= (total_ciudades) 0)");
