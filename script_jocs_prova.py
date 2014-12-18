@@ -117,7 +117,7 @@ def main(argv=None):
 			f.write("(= (total_ciudades) "+ str(num_min_cityes) +")");
 
 			if (args.program >= 1):
-				dias_total = getnumber(-1, num_cities*2*dias_max, dias_min*num_min_cityes);
+				dias_total = getnumber(-1, num_min_cityes*dias_max, dias_min*num_min_cityes);
 				f.write("(>= (min_total_dias_rec) "+ str(dias_total )+") ");
 				f.write("(<= (dias_city) (max_days_city)) ");
 				f.write("(>= (dias_city) (min_days_city)) \n\t\t");
