@@ -84,7 +84,7 @@ def main(argv=None):
 			if (args.program >= 1):
 				#dias_total = getnumber(-1,num_cities*2);
 				dias_min = getnumber(-1,num_cities/2,1);
-				dias_max = getnumber(-1,num_cities/2,dias_min+1);
+				dias_max = getnumber(-1,num_cities/2, dias_min+1);
 				f.write("(= (dias_city) 0)\n\t\t");
 				f.write("(= (min_total_dias_rec) 0)\n\t\t");
 				f.write("(= (min_days_city) "+ str(dias_min)+")\n\t\t");
@@ -97,7 +97,8 @@ def main(argv=None):
 					f.write("(= (interes c"+ str(j+1) +") "+ str(interes)+")");
 					if j%2 == 0:
 						f.write('\n\t\t');
-					f.write("(= (interes_total) 0)\n\t\t");
+
+				f.write("(= (interes_total) 0)\n\t\t");
 
 			if (args.program >= 3):
 				#precios hoteles
@@ -106,7 +107,8 @@ def main(argv=None):
 					f.write("(= (precio_hotel h"+ str(j+1) + '_c' + str((j/2)+1) + ') '+ str(precio_hotel)+")");
 					if j%2 == 0:
 						f.write('\n\t\t');
-					f.write("(= (precio_total) 0)\n\t\t");
+				
+				f.write("(= (precio_total) 0)\n\t\t");
 			
 
 			#tanquem init
