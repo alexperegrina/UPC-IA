@@ -21,8 +21,8 @@ def main(argv=None):
 	parser.add_argument('-program', default=0, type=int);
 	args = parser.parse_args();
 
-	num_cities = 10;
-	num_transports = 25;
+	num_cities = 6;
+	num_transports = 15;
 	num_hotels = num_cities*2;
 
 	dias_min = 0;
