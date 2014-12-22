@@ -130,7 +130,7 @@ def main(argv=None):
 
 			if (args.program >= 3):
 				precio_min = getnumber(-1,dias_total*10,10);
-				precio_max = getnumber(-1,dias_total*100,precio_min+100);
+				precio_max = getnumber(-1,precio_min*200,precio_min*15);
 				f.write("(<= (precio_total) "+ str(precio_max) +")");
 				f.write("(>= (precio_total) "+ str(precio_min) +")");
 
