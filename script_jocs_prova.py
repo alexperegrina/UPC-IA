@@ -118,7 +118,7 @@ def main(argv=None):
 			#comencem goal;
 			f.write("(:goal ");
 			f.write("(and ");
-			num_min_cityes = getnumber(-1,num_cities,(i*10)+1);
+			num_min_cityes = getnumber(-1,num_cities,3;
 			f.write("(= (total_ciudades) "+ str(num_min_cityes) +")");
 
 			if (args.program >= 1):
