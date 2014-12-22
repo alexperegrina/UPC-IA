@@ -149,8 +149,8 @@ def main(argv=None):
 
 			f.write(")\n");
 
-		num_cities = num_cities * 2;
-		num_transports = num_transports * 2;
+		num_cities = num_cities + 5;
+		num_transports = num_transports + 5;
 		num_hotels = num_cities * 2;
 
 		dias_min = 0;
